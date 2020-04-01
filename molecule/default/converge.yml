@@ -10,6 +10,8 @@
 
   roles:
     - role: ansible-apt-cacher-ng
+      vars:
+        apt_cacher_ng_server: true
 
   post_tasks:
     - name: Ensure apt-cacher-ng is running.

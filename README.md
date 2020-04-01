@@ -10,9 +10,13 @@ None.
 
 ## Role Variables
 
-Define this in your playbook to set up on client. This will setup Proxy on machine.
+Define value if provisioned machine is apt-cacher-ng server. By default machine provisioned as client.
 
-    apt_cacher_ng_server: "1.1.1.1"
+    apt_cacher_ng_server: false
+
+Define apt-cacher-ng server IP. It will be used to configure apt proxy in client machines.
+
+    apt_cacher_ng_server_ip: "1.1.1.1"
 
 Default values used for apt-cacher-ng config. You can specify which port and CacheDir to use for apt-cacher-ng.
 
