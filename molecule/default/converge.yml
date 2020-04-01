@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=300
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - role: ansible-apt-cacher-ng
+
+  post_tasks:
+    - name: Ensure apt-cacher-ng is running.
+      wait_for:
+        port: "{{ apt_cacher_ng_port }}"
