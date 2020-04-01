@@ -1,6 +1,6 @@
 # Ansible Role: apt-cacher-ng
 
-[![Build Status](https://travis-ci.com/paysera/ansible-apt-cacher-ng.svg?branch=master)](https://travis-ci.com/stankoviciuslukas/ansible-apt-cacher-ng)
+[![Build Status](https://travis-ci.com/paysera/ansible-apt-cacher-ng.svg?branch=master)](https://travis-ci.com/paysera/ansible-apt-cacher-ng)
 
 An Ansible Role to install and configure apt-cacher-ng on Debian/Ubuntu
 
