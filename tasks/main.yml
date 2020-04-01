@@ -1,0 +1,7 @@
+---
+- include: server.yml
+  tags: apt-cacher-ng:server
+  when: apt_cacher_ng_server is true
+- include: client.yml
+  tags: apt-cacher-ng:client
+  when: apt_cacher_ng_server is false
