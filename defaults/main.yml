@@ -3,3 +3,4 @@ apt_cacher_ng_server: false
 apt_cacher_ng_server_ip: 1.1.1.1
 apt_cacher_ng_port: 3142
 apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng
+packages: []
