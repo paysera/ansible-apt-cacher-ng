@@ -33,3 +33,17 @@
     - ["Port: {{ apt_cacher_ng_port }}", "CacheDir: {{ apt_cacher_ng_cache_dir }}"]
   notify:
     - restart apt-cacher-ng
+
+- name: Unhold packages.
+  command: apt-mark unhold $(apt-mark showhold) 2> /dev/null
+  when: force_update|bool
+
+- name: Install packages.
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+
+- name: Hold packages.
+  command: apt-mark hold {{ item }}
+  loop: "{{ packages }}"
