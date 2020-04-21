@@ -36,7 +36,7 @@
 
 - name: Unhold packages.
   command: apt-mark unhold $(apt-mark showhold) 2> /dev/null
-  when: force_update|bool
+  when: force_package_update|bool
 
 - name: Install packages.
   apt:
