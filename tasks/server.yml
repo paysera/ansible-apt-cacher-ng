@@ -35,7 +35,7 @@
     - restart apt-cacher-ng
 
 - name: Unhold packages.
-  command: apt-mark unhold $(apt-mark showhold) 2> /dev/null
+  command: bash -c "apt-mark unhold $(apt-mark showhold) 2>&1 || true"
   when: force_package_update|bool
 
 - name: Install packages.

@@ -12,7 +12,9 @@
     - role: ansible-apt-cacher-ng
       vars:
         apt_cacher_ng_server: true
-        packages: ['vim=2:8.0.1453-1ubuntu1', 'htop=2.1.0-3']
+        packages:
+          - 'vim'
+          - 'htop'
 
   post_tasks:
     - name: Ensure apt-cacher-ng is running.
