@@ -9,7 +9,7 @@
 
 - name: Install apt-cacher-ng.
   apt:
-    name: apt-cacher-ng=3.1-1build1
+    name: apt-cacher-ng={{ apt_cacher_ng_version }}
     state: present
     update_cache: true
 
