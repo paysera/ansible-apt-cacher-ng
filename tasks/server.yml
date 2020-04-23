@@ -2,11 +2,21 @@
 - name: Update sources.
   apt: update_cache=true cache_valid_time=86400
 
+- name: Unhold apt-cacher-ng
+  dpkg_selections:
+    name: apt-cacher-ng
+    selection: install
+
 - name: Install apt-cacher-ng.
   apt:
-    name: apt-cacher-ng
+    name: apt-cacher-ng={{ apt_cacher_ng_version }}
     state: present
     update_cache: true
+
+- name: Hold apt-cacher-ng
+  dpkg_selections:
+    name: apt-cacher-ng
+    selection: hold
 
 - name: Make sure apt-cacher-ng start at boot.
   service:
