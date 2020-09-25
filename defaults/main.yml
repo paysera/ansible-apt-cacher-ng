@@ -4,3 +4,18 @@ apt_cacher_ng_server_ip: 1.1.1.1
 apt_cacher_ng_port: 3142
 apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng
 apt_cacher_ng_version: 3.1-1build1
+
+import_keys: []
+# imports keys using apt_key module
+# import_keys:
+#   - url: https://repos.influxdata.com/influxdb.key
+#     state: present # Optional if not defined uses 'present'
+#     id: "0x2582E0C5" # Optional if not defined omits parameter
+#   - url: https://download.newrelic.com/548C16BF.gpg
+#     state: present
+
+import_repository: []
+# imports repository using apt_repository module
+# import_repository:
+#   - repo: deb https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+#     state: present # Optional if not defined uses 'present'
