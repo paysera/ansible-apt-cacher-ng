@@ -48,7 +48,7 @@
     id: "{{ item.id | default(omit) }}"
   with_items: "{{ import_keys }}"
 
-- name: Add repositories to apt-cacher-ng proxy
+- name: Add repositories to apt-cacher-ng proxy.
   apt_repository:
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present')}}"
