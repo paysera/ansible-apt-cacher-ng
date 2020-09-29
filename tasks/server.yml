@@ -1,7 +1,4 @@
 ---
-- name: Update sources.
-  apt: update_cache=true cache_valid_time=86400
-
 - name: Unhold apt-cacher-ng
   dpkg_selections:
     name: apt-cacher-ng
@@ -39,7 +36,25 @@
     line: "{{ item.1 }}"
     backrefs: true
   with_together:
-    - ["^# Port:", "^CacheDir:\ "]
-    - ["Port: {{ apt_cacher_ng_port }}", "CacheDir: {{ apt_cacher_ng_cache_dir }}"]
+    - ["^# Port:", "^CacheDir:\ ", "^# PassThroughPattern:"]
+    - ["Port: {{ apt_cacher_ng_port }}", "CacheDir: {{ apt_cacher_ng_cache_dir }}", "PassThroughPattern: .*:443$"]
   notify:
     - restart apt-cacher-ng
+
+- name: Add keys to apt-cacher-ng proxy.
+  apt_key:
+    url: "{{ item.url }}"
+    state: "{{ item.state | default('present') }}"
+    id: "{{ item.id | default(omit) }}"
+  with_items: "{{ import_keys }}"
+
+- name: Add repositories to apt-cacher-ng proxy.
+  apt_repository:
+    repo: "{{ item.repo }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ import_repository }}"
+
+- name: Update sources.
+  apt:
+    update_cache: true
+    cache_valid_time: 86400
